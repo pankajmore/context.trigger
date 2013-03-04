@@ -20,10 +20,19 @@
 package com.Foo.DemoPhoneGap;
 
 import android.os.Bundle;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.net.*;
+import android.net.wifi.*;
+import android.widget.*;
 import org.apache.cordova.*;
+import java.lang.reflect.Field;
 
 public class DemoPhoneGap extends DroidGap
 {
+	
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
@@ -31,6 +40,29 @@ public class DemoPhoneGap extends DroidGap
         // Set by <content src="index.html" /> in config.xml
         super.loadUrl(Config.getStartUrl());
         //super.loadUrl("file:///android_asset/www/index.html")
+        this.registerReceiver(this.mNetworkEnabled,
+                new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+
     }
+    private BroadcastReceiver mNetworkEnabled = new BroadcastReceiver() {
+        public void onReceive(Context context, Intent intent) {
+
+        	ConnectivityManager connectivityManager = ((ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE));
+        	NetworkInfo currentNetworkInfo = connectivityManager.getActiveNetworkInfo();
+            if(currentNetworkInfo != null){
+            if(currentNetworkInfo.isConnected()){
+            	if (currentNetworkInfo.getType() == 0){
+                Toast.makeText(getApplicationContext(), "Mobile Netowrk Connected", Toast.LENGTH_LONG).show();
+            	}else if(currentNetworkInfo.getType() ==1){
+                    Toast.makeText(getApplicationContext(), "Wifi Connected", Toast.LENGTH_LONG).show();		
+            	}else{
+                    Toast.makeText(getApplicationContext(), "Unknown Connected", Toast.LENGTH_LONG).show();
+            	}
+            }}else {
+                Toast.makeText(getApplicationContext(), "Not Connected", Toast.LENGTH_LONG).show();
+            }
+        }
+    };
+
 }
 
