@@ -10,6 +10,19 @@
     // Wait for Cordova to load
     // 
     document.addEventListener("deviceready", onDeviceReady, false);
+    document.addEventListener("offline", onOffline, false);
+    document.addEventListener("online", onOnline, false);
+
+	function onOnline() {
+    	// Handle the online event
+    	navigator.notification.alert("Connected!");
+    	navigator.notification.vibrate(1000);
+	}
+	function onOffline() {
+    	// Handle the online event
+    	navigator.notification.alert("Disconnected!");
+    	navigator.notification.vibrate(1000);
+	}
 
     // Cordova is loaded and it is now safe to make calls Cordova methods
     //
@@ -29,7 +42,14 @@
         states[Connection.CELL_4G]  = 'Cell 4G connection';
         states[Connection.NONE]     = 'No network connection';
 
-        alert ('Connection type: ' + states[networkState]);
+		navigator.notification.alert(
+  		  	states[networkState],  // message
+    		undefined,         // callback
+    		'Connection type: ',            // title
+    		'OK'                  // buttonName
+		);
+		navigator.notification.vibrate(2500);
+        //alert ('Connection type: ' + );
     }
     </script>
   </head>
