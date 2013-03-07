@@ -51,11 +51,18 @@ public class DemoPhoneGap extends DroidGap
         	NetworkInfo currentNetworkInfo = connectivityManager.getActiveNetworkInfo();
             if(currentNetworkInfo != null){
             if(currentNetworkInfo.isConnected()){
-            	if (currentNetworkInfo.getType() == 0){
+            	if (currentNetworkInfo.getType() == 0){ //If Wifi is off, Mobile is active
+            		WifiManager wifi;
+            		wifi=(WifiManager)getSystemService(Context.WIFI_SERVICE);
+
+            		//wifi.setWifiEnabled(false);//Turn off Wifi
+
+            		wifi.setWifiEnabled(true);//Turn on Wifi
                 Toast.makeText(getApplicationContext(), "Mobile Netowrk Connected", Toast.LENGTH_LONG).show();
-            	}else if(currentNetworkInfo.getType() ==1){
+            	}else if(currentNetworkInfo.getType() ==1){ //If Wifi is on , always here
                     Toast.makeText(getApplicationContext(), "Wifi Connected", Toast.LENGTH_LONG).show();		
             	}else{
+            		
                     Toast.makeText(getApplicationContext(), "Unknown Connected", Toast.LENGTH_LONG).show();
             	}
             }}else {
