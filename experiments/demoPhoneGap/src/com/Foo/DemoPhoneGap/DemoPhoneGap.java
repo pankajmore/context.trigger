@@ -24,11 +24,11 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.media.*;
 import android.net.*;
 import android.net.wifi.*;
 import android.widget.*;
 import org.apache.cordova.*;
-import java.lang.reflect.Field;
 
 public class DemoPhoneGap extends DroidGap
 {
@@ -42,6 +42,8 @@ public class DemoPhoneGap extends DroidGap
         //super.loadUrl("file:///android_asset/www/index.html")
         this.registerReceiver(this.mNetworkEnabled,
                 new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+        this.registerReceiver(this.rHeadsetWired,
+                new IntentFilter(Intent.ACTION_HEADSET_PLUG));
 
     }
     private BroadcastReceiver mNetworkEnabled = new BroadcastReceiver() {
@@ -68,6 +70,18 @@ public class DemoPhoneGap extends DroidGap
             }}else {
                 Toast.makeText(getApplicationContext(), "Not Connected", Toast.LENGTH_LONG).show();
             }
+        }
+    };
+    private BroadcastReceiver rHeadsetWired = new BroadcastReceiver() {
+        public void onReceive(Context context, Intent intent) {
+        	int state = intent.getIntExtra("state", 0);
+        	if (state==1) {
+                Toast.makeText(getApplicationContext(), "Headphone Connected", Toast.LENGTH_LONG).show();
+        	}
+        	else {
+        		Toast.makeText(getApplicationContext(), "Headphone Disconnected", Toast.LENGTH_LONG).show();
+        	}
+        	
         }
     };
 
