@@ -17,7 +17,6 @@ public class DemoPhoneGap extends Activity implements LocationListener {
 
   
 /** Called when the activity is first created. */
-
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -30,8 +29,8 @@ public class DemoPhoneGap extends Activity implements LocationListener {
     // Define the criteria how to select the locatioin provider -> use
     // default
     Criteria criteria = new Criteria();
-    provider = locationManager.getBestProvider(criteria, true);
-    Location location = locationManager.getLastKnownLocation(provider);
+    provider = locationManager.GPS_PROVIDER;//getBestProvider(criteria, true);
+    Location location = null;//locationManager.getLastKnownLocation(provider);
 
     // Initialize the location fields
     if (location != null) {
@@ -59,28 +58,29 @@ public class DemoPhoneGap extends Activity implements LocationListener {
 
   @Override
   public void onLocationChanged(Location location) {
-    int lat = (int) (location.getLatitude());
-    int lng = (int) (location.getLongitude());
+    float lat = (float) (location.getLatitude());
+    float lng = (float) (location.getLongitude());
     latituteField.setText(String.valueOf(lat));
     longitudeField.setText(String.valueOf(lng));
   }
 
   @Override
   public void onStatusChanged(String provider, int status, Bundle extras) {
-    // TODO Auto-generated method stub
-
+      // This method is called when a provider is unable to fetch a location or if 
+    // the provider has recently become available after a period of unavailability.
+	  // TODO Auto-generated method stub
+	  Toast.makeText(this, "Error with GPS " + provider,
+		        Toast.LENGTH_SHORT).show();
   }
-
   @Override
   public void onProviderEnabled(String provider) {
-    Toast.makeText(this, "Enabled new provider " + provider,
+    Toast.makeText(this, provider + "  Enabled.",
         Toast.LENGTH_SHORT).show();
 
   }
-
   @Override
   public void onProviderDisabled(String provider) {
-    Toast.makeText(this, "Disabled provider " + provider,
+    Toast.makeText(this, provider + "  Disabled.",
         Toast.LENGTH_SHORT).show();
   }
 }
