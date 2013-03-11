@@ -27,8 +27,11 @@ import android.content.Context;
 import android.media.*;
 import android.net.*;
 import android.net.wifi.*;
+import android.telephony.PhoneStateListener;
+import android.telephony.TelephonyManager;
 import android.widget.*;
 import org.apache.cordova.*;
+import android.util.Log;
 
 public class DemoPhoneGap extends DroidGap
 {
@@ -44,6 +47,8 @@ public class DemoPhoneGap extends DroidGap
                 new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
         this.registerReceiver(this.rHeadsetWired,
                 new IntentFilter(Intent.ACTION_HEADSET_PLUG));
+        this.registerReceiver(this.rIncomingCall,
+                new IntentFilter(TelephonyManager.ACTION_PHONE_STATE_CHANGED));
 
     }
     private BroadcastReceiver mNetworkEnabled = new BroadcastReceiver() {
@@ -72,6 +77,7 @@ public class DemoPhoneGap extends DroidGap
             }
         }
     };
+    
     private BroadcastReceiver rHeadsetWired = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
         	int state = intent.getIntExtra("state", 0);
@@ -80,6 +86,20 @@ public class DemoPhoneGap extends DroidGap
         	}
         	else {
         		Toast.makeText(getApplicationContext(), "Headphone Disconnected", Toast.LENGTH_LONG).show();
+        	}
+        	
+        }
+    };
+    
+    private BroadcastReceiver rIncomingCall = new BroadcastReceiver() {
+        public void onReceive(Context context, Intent intent) {
+        	TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+        	int state = tm.getCallState();
+        	if (state==TelephonyManager.CALL_STATE_RINGING) {
+                Toast.makeText(getApplicationContext(), "Call ringing", Toast.LENGTH_LONG).show();
+        	}
+        	else {
+//        		Log.d("rIncomingCall","State="+state);
         	}
         	
         }
