@@ -35,7 +35,7 @@ import android.util.Log;
 
 public class DemoPhoneGap extends DroidGap
 {
-	
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
