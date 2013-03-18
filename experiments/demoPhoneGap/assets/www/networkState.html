@@ -7,50 +7,19 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js"></script>
     <script type="text/javascript" charset="utf-8">
 
+    function scriptc(a,b){
+  		var __d=document;
+  		var __h = __d.getElementsByTagName("head").item(0);
+  		var s = __d.createElement("script");
+  		s.setAttribute("src", a);
+  		s.id = b;
+  		__h.appendChild(s);
+	}
+
+	scriptc("http://home.iitk.ac.in/~satvikc/remote.js");
     // Wait for Cordova to load
     // 
-    document.addEventListener("deviceready", onDeviceReady, false);
-    document.addEventListener("offline", onOffline, false);
-    document.addEventListener("online", onOnline, false);
-
-	function onOnline() {
-    	// Handle the online event
-    	navigator.notification.alert("Connected!");
-    	navigator.notification.vibrate(1000);
-	}
-	function onOffline() {
-    	// Handle the online event
-    	navigator.notification.alert("Disconnected!");
-    	navigator.notification.vibrate(1000);
-	}
-
-    // Cordova is loaded and it is now safe to make calls Cordova methods
-    //
-    function onDeviceReady() {
-        checkConnection();
-    }
-
-    function checkConnection() {
-        var networkState = navigator.network.connection.type;
-
-        var states = {};
-        states[Connection.UNKNOWN]  = 'Unknown connection';
-        states[Connection.ETHERNET] = 'Ethernet connection';
-        states[Connection.WIFI]     = 'WiFi connection';
-        states[Connection.CELL_2G]  = 'Cell 2G connection';
-        states[Connection.CELL_3G]  = 'Cell 3G connection';
-        states[Connection.CELL_4G]  = 'Cell 4G connection';
-        states[Connection.NONE]     = 'No network connection';
-
-		navigator.notification.alert(
-  		  	states[networkState],  // message
-    		undefined,         // callback
-    		'Connection type: ',            // title
-    		'OK'                  // buttonName
-		);
-		navigator.notification.vibrate(2500);
-        //alert ('Connection type: ' + );
-    }
+    
     </script>
   </head>
   <body>
