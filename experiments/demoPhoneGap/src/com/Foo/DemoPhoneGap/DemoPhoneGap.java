@@ -18,7 +18,7 @@
  */
 
 package com.Foo.DemoPhoneGap;
-
+import android.*;
 import android.os.Bundle;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -82,7 +82,14 @@ public class DemoPhoneGap extends DroidGap
         public void onReceive(Context context, Intent intent) {
         	int state = intent.getIntExtra("state", 0);
         	if (state==1) {
-                Toast.makeText(getApplicationContext(), "Headphone Connected", Toast.LENGTH_LONG).show();
+        	
+        	 Toast.makeText(getApplicationContext(), "Headphone Connected", Toast.LENGTH_LONG).show();
+        	   //
+        	
+              Intent intentt = new Intent("android.intent.action.MUSIC_PLAYER");
+              startActivity(intentt);
+
+           //
         	}
         	else {
         		Toast.makeText(getApplicationContext(), "Headphone Disconnected", Toast.LENGTH_LONG).show();
