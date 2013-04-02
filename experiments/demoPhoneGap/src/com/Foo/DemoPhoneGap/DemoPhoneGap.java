@@ -32,6 +32,9 @@ import android.telephony.TelephonyManager;
 import android.widget.*;
 import org.apache.cordova.*;
 import android.util.Log;
+import android.telephony.SmsManager;
+  import android.net.Uri;
+    import android.content.ContentValues;
 
 public class DemoPhoneGap extends DroidGap
 {
@@ -102,15 +105,27 @@ public class DemoPhoneGap extends DroidGap
         public void onReceive(Context context, Intent intent) {
         	TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
         	int state = tm.getCallState();
+        	Bundle extra=intent.getExtras();//new
+        	String number = extra.getString(tm.EXTRA_INCOMING_NUMBER);
         	if (state==TelephonyManager.CALL_STATE_RINGING) {
-                Toast.makeText(getApplicationContext(), "Call ringing", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Call ringing1", Toast.LENGTH_LONG).show();
         	}
         	else {
 //        		Log.d("rIncomingCall","State="+state);
+                Toast.makeText(getApplicationContext(), "Call ringing2 " + number, Toast.LENGTH_LONG).show();
+         Intent smsIntent = new Intent(Intent.ACTION_VIEW);
+
+        smsIntent.putExtra("sms_body","I'm busy.Call you later."); 
+        smsIntent.putExtra("address",number); //"0123456789");
+        smsIntent.setType("vnd.android-dir/mms-sms");
+
+        startActivity(smsIntent);
+		
+      //  Toast.makeText(getApplicationContext(), "Message Sent!", Toast.LENGTH_LONG).show();
+        	
         	}
         	
         }
     };
 
 }
-
