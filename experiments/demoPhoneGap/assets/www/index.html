@@ -39,15 +39,9 @@
         <script type="text/javascript" src="js/HeadsetWatcher.js"></script>
         <script type="text/javascript">
             app.initialize();
-			document.addEventListener("deviceready", function(){
-    			HeadsetWatcher.watch(function(result) {
-    			if(result.plugged) {
-      				alert("The headphones have been plugged in!");
-    			} else {
-      				alert("The headphones have been unplugged!");
-    		}})
-    });
- 			
+			document.addEventListener("deviceready",HeadsetContext);
+ 			document.addEventListener("headsetplug",function() {alert("plugged")});
+ 			document.addEventListener("headsetunplug",function() {alert("unplugged")});
         </script>
     </body>
 </html>
