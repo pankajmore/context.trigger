@@ -37,11 +37,14 @@
         <script type="text/javascript" src="cordova-2.4.0.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/HeadsetWatcher.js"></script>
+        <script type="text/javascript" src="js/CallWatcher.js"></script>
         <script type="text/javascript">
             app.initialize();
 			document.addEventListener("deviceready",HeadsetContext);
+			document.addEventListener("deviceready",CallContext);
  			document.addEventListener("headsetplug",function() {alert("plugged")});
  			document.addEventListener("headsetunplug",function() {alert("unplugged")});
+ 			document.addEventListener("incomingcall",function(c) {alert("call from" +  number)});
         </script>
     </body>
 </html>

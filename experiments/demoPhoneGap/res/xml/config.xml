@@ -57,6 +57,7 @@
     <plugin name="InAppBrowser" value="org.apache.cordova.InAppBrowser"/>
     <plugin name="NetworkStatus" value="org.apache.cordova.NetworkManager" />
     <plugin name="HeadsetWatcher" value="com.Context.HeadsetWatcher"/>
+    <plugin name="CallWatcher" value="com.Context.CallWatcher"/>
 </plugins>
 </cordova>
 
