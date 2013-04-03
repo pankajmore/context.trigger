@@ -46,12 +46,12 @@ public class DemoPhoneGap extends DroidGap
         // Set by <content src="index.html" /> in config.xml
         super.loadUrl(Config.getStartUrl());
         //super.loadUrl("file:///android_asset/www/index.html")
-        this.registerReceiver(this.mNetworkEnabled,
-                new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
-        this.registerReceiver(this.rHeadsetWired,
-                new IntentFilter(Intent.ACTION_HEADSET_PLUG));
-        this.registerReceiver(this.rIncomingCall,
-                new IntentFilter(TelephonyManager.ACTION_PHONE_STATE_CHANGED));
+//        this.registerReceiver(this.mNetworkEnabled,
+//                new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
+//        this.registerReceiver(this.rHeadsetWired,
+//                new IntentFilter(Intent.ACTION_HEADSET_PLUG));
+//        this.registerReceiver(this.rIncomingCall,
+//                new IntentFilter(TelephonyManager.ACTION_PHONE_STATE_CHANGED));
 
     }
     private BroadcastReceiver mNetworkEnabled = new BroadcastReceiver() {

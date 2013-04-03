@@ -36,8 +36,18 @@
         </div>
         <script type="text/javascript" src="cordova-2.4.0.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" src="js/HeadsetWatcher.js"></script>
         <script type="text/javascript">
             app.initialize();
+			document.addEventListener("deviceready", function(){
+    			HeadsetWatcher.watch(function(result) {
+    			if(result.plugged) {
+      				alert("The headphones have been plugged in!");
+    			} else {
+      				alert("The headphones have been unplugged!");
+    		}})
+    });
+ 			
         </script>
     </body>
 </html>
