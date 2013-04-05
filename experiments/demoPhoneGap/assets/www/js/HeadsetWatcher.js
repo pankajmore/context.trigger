@@ -6,15 +6,15 @@
  * 
  */
 function HeadsetContext() {
- 	var hPlugged = document.createEvent('Events');
-	hPlugged.initEvent('headsetplug', true, true);
-	var hUnplugged = document.createEvent('Events');
-	hUnplugged.initEvent('headsetunplug', true, true);	
+ 	var hPlugged = { type: 'headsetplug' } ;
+	var hUnplugged = { type : 'headsetunplug'};	
 	HeadsetWatcher.watch(function(result) {
     			if(result.plugged) {
-					document.dispatchEvent(hPlugged);
+    				console.log("Received Event: headsetplug");
+					recipes.dispatchEvent(hPlugged);
     			} else {
-      				document.dispatchEvent(hUnplugged);
+    				console.log("Received Event: headsetunplug");
+      				recipes.dispatchEvent(hUnplugged);
     		}})
 }
 var HeadsetWatcher = {
