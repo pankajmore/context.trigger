@@ -1,11 +1,9 @@
 function CallContext() {
- 	var incoming = document.createEvent('Events');
-	incoming.initEvent('incomingcall', true, true);
-	console.log("Inside call context");
+ 	var incoming = { type : 'incomingcall'};
 	CallWatcher.watch(function(result) {
     			if(result.incoming) {
     				incoming.number = result.number;
-					document.dispatchEvent(incoming);
+					recipes.dispatchEvent(incoming);
     			}})
 }
 var CallWatcher = {
