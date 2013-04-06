@@ -12,6 +12,7 @@ Recipes.prototype.addRecipe = function(recipe) {
     return count;
 };
 
+
 Recipes.prototype.removeRecipe = function(id) {
     delete this._recipes[id];
 };
@@ -117,5 +118,19 @@ var Recipe = function () {};
 Recipe.prototype = Object.create( EventDispatcher.prototype );
 
 var recipes = new Recipes();
+
+function addFromFile(filename) {
+    var recipe = new Recipe();
+    var recid = recipes.addRecipe(recipe);
+    console.log("Recipe id of " + filename + " is "+recid);
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET",filename,false);
+    xmlhttp.send(null);
+    var contents = xmlhttp.responseText;
+    console.log("contents = " + contents);
+    eval("var recipecode = function() { " + contents + " } "); 
+    recipecode.call(recipe);
+    return recid;
+}
 
 console.log("Recipes code completed");

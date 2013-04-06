@@ -13,7 +13,7 @@ function atDate(time,callback){
 // triggers the event ever day at that time
 function everyDay(time,callback){
     var now = new Date();
-    var at = new Date(now.toDateString + " " + time);
+    var at = new Date(now.toDateString() + " " + time);
     var millisecs = at - now;
     if (millisecs <= 0) {
 	millisecs += 86400000;
