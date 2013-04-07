@@ -35,43 +35,41 @@
             <h1> <a href="./networkState.html"> CheckConnection </h1></p>
         </div>
         <script type="text/javascript" src="cordova-2.4.0.js"></script>
+        <script src="js/kendo/jquery.min.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/Recipes.js"></script>
-        <script> console.log("headset watcher code loading started"); </script>
         <script type="text/javascript" src="js/HeadsetWatcher.js"></script>
-        <script> console.log("call watcher code loading started"); </script>
-        //<script type="text/javascript" src="js/CallWatcher.js"></script>
+        <script type="text/javascript" src="js/SmsWatcher.js"></script>
+        <script type="text/javascript" src="js/CallWatcher.js"></script>
+        <script type="text/javascript" src="js/UnlockWatcher.js"></script>
         <script> 
         app.initialize();
         console.log("Starting index.html");
         document.addEventListener("deviceready",HeadsetContext);
 	    document.addEventListener("deviceready",CallContext);
+	    document.addEventListener("deviceready",SmsContext);
+	    document.addEventListener("deviceready",UnlockContext);
 	    console.log("context code loaded");
 	    </script>
 	    <script>
 	    console.log("creating new recipe");
-        var recipe1 = new Recipe();
-        var rec1id = recipes.addRecipe(recipe1);
-        console.log("Recipe 1 id is "+rec1id);
-        var recipe1code = function() {
-        	this.addEventListener('headsetplug',function() {
-        		console.log("headset plug event");
-        		alert("plugged");
-        		//navigator.notification.vibrate(1000);
-        		});
- 			//this.addEventListener("headsetunplug",function() {navigator.notification.vibrate(1000)});
- 		};
-	    
- 	    recipe1code.call(recipe1);
- 	    var recipe2 = new Recipe();
- 	    var rec2id = recipes.addRecipe(recipe2);
- 	    var recipe2code = function() {
- 	    	this.addEventListener('incomingcall',function(c) {
- 	    		console.log("Incoming call event from number "+c.number);
- 	    		recipes.removeRecipe(rec1id);
- 	    		});
- 		};
- 		recipe2code.call(recipe2);
+	    addFromFile("Recipe1.js");
+	    addFromFile("Recipe2.js");
+ 	    <!-- var recipe2 = new Recipe(); -->
+ 	    <!-- var rec2id = recipes.addRecipe(recipe2); -->
+ 	    <!-- var recipe2code = function() { -->
+ 	    <!-- 	this.addEventListener('incomingcall',function(c) { -->
+ 	    <!-- 		console.log("Incoming call event from number "+c.number); -->
+ 	    <!-- 		recipes.removeRecipe(rec1id); -->
+ 	    <!-- 		}); -->
+ 	    <!-- 	}; -->
+ 	    <!-- 	recipe2code.call(recipe2); -->
+ 	    <!-- 	setInterval(Timer,5000); -->
+ 	    <!-- 	console.log("Interval set"); -->
+ 	    <!-- 	function Timer() { -->
+ 	    <!-- 		console.log("Interval event"); -->
+ 	    <!-- 	    navigator.notification.vibrate(1000); -->
+ 	    <!-- 	    } -->
         </script>
     </body>
 </html>

@@ -1,6 +1,16 @@
 console.log("Inside Recipes");
 function Recipes() {
+	var rec = this;
     this._count = 0;
+    this._phonegapevents = ['deviceready','pause','resume','online','offline','backbutton','batterycritical'
+    					   ,'batterylow','batterystatus','menubutton','searchbutton','startcallbutton'
+    					   ,'endcallbutton','volumedownbutton','volumeupbutton'];
+    this._phonegapevents.forEach(function(e) { 
+    	document.addEventListener(e,function() {
+    		console.log("Dispatching phonegap event "+e); 
+    		rec.dispatchEvent({type: e});
+    	})
+    });
 }
 
 Recipes.prototype.addRecipe = function(recipe) {
@@ -12,12 +22,14 @@ Recipes.prototype.addRecipe = function(recipe) {
     return count;
 };
 
+
 Recipes.prototype.removeRecipe = function(id) {
+    this._recipes[id].close();
     delete this._recipes[id];
 };
 
 Recipes.prototype.dispatchEvent = function(event) {
-	console.log("Dispatching event " + event.type);
+    console.log("Dispatching event " + event.type);
     var key , recipes = this._recipes;
     for (key in recipes) {
         recipes[key].dispatchEvent(event);
@@ -30,12 +42,35 @@ console.log("Event dispatcher code");
  * @author mrdoob / http://mrdoob.com/
  */
 
-var EventDispatcher = function () {};
+var Recipe = function () {};
 
-EventDispatcher.prototype = {
+Recipe.prototype = {
 
-	constructor: EventDispatcher,
-
+	constructor: Recipe,
+	
+	atTime: function (time,callback) {
+	    console.log("atTime called");
+	    var now = new Date();
+	    var flag = false;
+	    var at = new Date(time)
+	    if (at.getTime() !== at.getTime()) {
+		at = new Date(now.toDateString() + " " + time);
+		flag = true;
+	    }
+	    var millisecs = at - now;
+	    if (millisecs <= 0 && flag) {
+		millisecs += 86400000;
+	    }
+	    console.log("Millisecs " + millisecs);
+	    if (millisecs > 0) {
+		timeout = setTimeout(callback,millisecs);
+		if ( this._timeouts === undefined ) {
+			this._timeouts = [];
+		}
+		this._timeouts.push(timeout);
+	    }
+	},
+	
 	addEventListener: function ( type, listener ) {
 
 		if ( this._listeners === undefined ) this._listeners = {};
@@ -86,6 +121,12 @@ EventDispatcher.prototype = {
 		}
 
 	},
+	
+	close: function () {
+	    if (!(this._timeouts === undefined)) {
+		this._timeouts.forEach(clearTimeout);
+		}
+	},
 
 	dispatchEvent: function ( event ) {
 
@@ -113,9 +154,20 @@ EventDispatcher.prototype = {
 		
 console.log("Recipe code");	
 
-var Recipe = function () {};
-Recipe.prototype = Object.create( EventDispatcher.prototype );
-
 var recipes = new Recipes();
+
+function addFromFile(filename) {
+    var recipe = new Recipe();
+    var recid = recipes.addRecipe(recipe);
+    console.log("Recipe id of " + filename + " is "+recid);
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET",filename,false);
+    xmlhttp.send(null);
+    var contents = xmlhttp.responseText;
+    //console.log("contents = " + contents);
+    eval("var recipecode = function() { " + contents + " } "); 
+    recipecode.call(recipe);
+    return recid;
+}
 
 console.log("Recipes code completed");
