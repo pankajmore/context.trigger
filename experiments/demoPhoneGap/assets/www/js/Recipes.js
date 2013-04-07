@@ -42,7 +42,14 @@ console.log("Event dispatcher code");
  * @author mrdoob / http://mrdoob.com/
  */
 
-var Recipe = function () {};
+var Recipe = function () {
+	this._useslocation = false;
+	};
+
+Recipe.locationwatcher = {
+	watcher: undefined,
+	count: 0
+	};
 
 Recipe.prototype = {
 
@@ -72,23 +79,33 @@ Recipe.prototype = {
 	},
 	
 	addEventListener: function ( type, listener ) {
-
+		var rec = this;
+		if (type == 'locationchange') {
+			console.log("Location change event listener added");
+			if (!Recipe.locationwatcher.watcher) {
+					function onSuccess(position){
+						var event = {type: 'locationchange'};
+						event.position = position;	
+						rec.dispatchEvent(event);
+					}
+					function onError(error){
+						console.log("Error locationchange: " + "code: " + error.code + " message: "+ error.message);
+					} 
+					Recipe.locationwatcher.watcher = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 30000 });
+			}
+			if (!this._useslocation) {
+				Recipe.locationwatcher.count += 1;
+				this._useslocation = true;
+			}
+		}
 		if ( this._listeners === undefined ) this._listeners = {};
-
 		var listeners = this._listeners;
-
 		if ( listeners[ type ] === undefined ) {
-
 			listeners[ type ] = [];
-
 		}
-
 		if ( listeners[ type ].indexOf( listener ) === - 1 ) {
-
 			listeners[ type ].push( listener );
-
 		}
-
 	},
 
 	hasEventListener: function ( type, listener ) {
@@ -125,6 +142,12 @@ Recipe.prototype = {
 	close: function () {
 	    if (!(this._timeouts === undefined)) {
 		this._timeouts.forEach(clearTimeout);
+		}
+		if (this._useslocation) {
+			Recipe.locationwatcher.count -= 1;
+			if (Recipe.locationwatcher.count == 0) {
+				navigator.geolocation.clearWatch(Recipe.locationwatcher.watcher);
+			}
 		}
 	},
 
@@ -169,5 +192,3 @@ function addFromFile(filename) {
     recipecode.call(recipe);
     return recid;
 }
-
-console.log("Recipes code completed");
