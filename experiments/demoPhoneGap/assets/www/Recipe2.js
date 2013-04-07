@@ -1,10 +1,4 @@
-//at("9:42:00",function() {
-//   console.log("Day Event");
-   // navigator.notification.vibrate(1000)
-//});
-this.addEventListener("incomingsms",function(e) {
-	console.log("From: " + e.number + " Body: " + e.message);
-});
-this.addEventListener("unlock",function(e) {
-	console.log("Screen Unlocked");
-});
+console.log("Recipe 2 start");
+this.atTime("13:02:00",function() { console.log("Day Event1") });
+this.atTime("13:03:00",function() { console.log("Day Event2") });
+console.log("Recipe 2 end");

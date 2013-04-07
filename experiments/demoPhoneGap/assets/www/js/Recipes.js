@@ -14,11 +14,12 @@ Recipes.prototype.addRecipe = function(recipe) {
 
 
 Recipes.prototype.removeRecipe = function(id) {
+    this._recipes[id].close();
     delete this._recipes[id];
 };
 
 Recipes.prototype.dispatchEvent = function(event) {
-	console.log("Dispatching event " + event.type);
+    console.log("Dispatching event " + event.type);
     var key , recipes = this._recipes;
     for (key in recipes) {
         recipes[key].dispatchEvent(event);
@@ -36,7 +37,30 @@ var Recipe = function () {};
 Recipe.prototype = {
 
 	constructor: Recipe,
-
+	
+	atTime: function (time,callback) {
+	    console.log("atTime called");
+	    var now = new Date();
+	    var flag = false;
+	    var at = new Date(time)
+	    if (at.getTime() !== at.getTime()) {
+		at = new Date(now.toDateString() + " " + time);
+		flag = true;
+	    }
+	    var millisecs = at - now;
+	    if (millisecs <= 0 && flag) {
+		millisecs += 86400000;
+	    }
+	    console.log("Millisecs " + millisecs);
+	    if (millisecs > 0) {
+		timeout = setTimeout(callback,millisecs);
+		if ( this._timeouts === undefined ) {
+			this._timeouts = [];
+		}
+		this._timeouts.push(timeout);
+	    }
+	},
+	
 	addEventListener: function ( type, listener ) {
 
 		if ( this._listeners === undefined ) this._listeners = {};
@@ -86,6 +110,12 @@ Recipe.prototype = {
 
 		}
 
+	},
+	
+	close: function () {
+	    if (!(this._timeouts === undefined)) {
+		this._timeouts.forEach(clearTimeout);
+		}
 	},
 
 	dispatchEvent: function ( event ) {
