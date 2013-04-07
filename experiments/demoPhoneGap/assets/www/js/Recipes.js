@@ -31,11 +31,11 @@ console.log("Event dispatcher code");
  * @author mrdoob / http://mrdoob.com/
  */
 
-var EventDispatcher = function () {};
+var Recipe = function () {};
 
-EventDispatcher.prototype = {
+Recipe.prototype = {
 
-	constructor: EventDispatcher,
+	constructor: Recipe,
 
 	addEventListener: function ( type, listener ) {
 
@@ -114,9 +114,6 @@ EventDispatcher.prototype = {
 		
 console.log("Recipe code");	
 
-var Recipe = function () {};
-Recipe.prototype = Object.create( EventDispatcher.prototype );
-
 var recipes = new Recipes();
 
 function addFromFile(filename) {
@@ -127,7 +124,7 @@ function addFromFile(filename) {
     xmlhttp.open("GET",filename,false);
     xmlhttp.send(null);
     var contents = xmlhttp.responseText;
-    console.log("contents = " + contents);
+    //console.log("contents = " + contents);
     eval("var recipecode = function() { " + contents + " } "); 
     recipecode.call(recipe);
     return recid;
