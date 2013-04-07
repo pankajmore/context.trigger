@@ -1,6 +1,16 @@
 console.log("Inside Recipes");
 function Recipes() {
+	var rec = this;
     this._count = 0;
+    this._phonegapevents = ['deviceready','pause','resume','online','offline','backbutton','batterycritical'
+    					   ,'batterylow','batterystatus','menubutton','searchbutton','startcallbutton'
+    					   ,'endcallbutton','volumedownbutton','volumeupbutton'];
+    this._phonegapevents.forEach(function(e) { 
+    	document.addEventListener(e,function() {
+    		console.log("Dispatching phonegap event "+e); 
+    		rec.dispatchEvent({type: e});
+    	})
+    });
 }
 
 Recipes.prototype.addRecipe = function(recipe) {
