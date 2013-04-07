@@ -41,13 +41,15 @@
         <script type="text/javascript" src="js/HeadsetWatcher.js"></script>
         <script type="text/javascript" src="js/Timer.js"></script>
         <script type="text/javascript" src="js/SmsWatcher.js"></script>
-        //<script type="text/javascript" src="js/CallWatcher.js"></script>
+        <script type="text/javascript" src="js/CallWatcher.js"></script>
+        <script type="text/javascript" src="js/UnlockWatcher.js"></script>
         <script> 
         app.initialize();
         console.log("Starting index.html");
         document.addEventListener("deviceready",HeadsetContext);
 	    document.addEventListener("deviceready",CallContext);
 	    document.addEventListener("deviceready",SmsContext);
+	    document.addEventListener("deviceready",UnlockContext);
 	    console.log("context code loaded");
 	    </script>
 	    <script>

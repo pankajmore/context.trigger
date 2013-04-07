@@ -5,3 +5,6 @@
 this.addEventListener("incomingsms",function(e) {
 	console.log("From: " + e.number + " Body: " + e.message);
 });
+this.addEventListener("unlock",function(e) {
+	console.log("Screen Unlocked");
+});

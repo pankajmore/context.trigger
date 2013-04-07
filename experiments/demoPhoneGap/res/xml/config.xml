@@ -59,6 +59,7 @@
     <plugin name="HeadsetWatcher" value="com.Context.HeadsetWatcher"/>
     <plugin name="CallWatcher" value="com.Context.CallWatcher"/>
     <plugin name="SmsWatcher" value="com.Context.SmsWatcher"/>
+    <plugin name="UnlockWatcher" value="com.Context.UnlockWatcher"/>
 </plugins>
 </cordova>
 
