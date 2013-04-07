@@ -1,50 +1,37 @@
 <!DOCTYPE html>
-<html ng-app>
-  <head>
-    <title>navigator.network.connection.type Example</title>
+<html>
+<head>
+    <title>Context.Trigger</title>
 
-    <script type="text/javascript" charset="utf-8" src="cordova-2.4.0.js"></script>
-    <!-- Kendo UI Mobile CSS -->
     <link href="styles/kendo.mobile.all.min.css" rel="stylesheet" />
-    <!-- jQuery JavaScript -->
+</head>
+<body>
+    <div id="home" data-role="view" data-layout="default">
+        Hello Mobile World!
+    </div>
+
+    <section data-role="layout" data-id="default">
+        <header data-role="header">
+            <div data-role="navbar">Context.Trigger</div>
+        </header>
+        <!--View content will render here-->
+        <footer data-role="footer">
+            <div data-role="tabstrip">
+                <a data-icon="home" href="#home">Home</a>
+                <a data-icon="settings" href="recipes.html">Recipes</a>
+                <a data-icon="about" href="about.html">About</a>
+            </div>
+        </footer>
+    </section>
+
     <script src="js/kendo/jquery.min.js"></script>
-    <!-- Kendo UI Mobile combined JavaScript -->
-    <script src="js/kendo/kendo.mobile.min.js"></script>
-  </head>
-  <body>
-    <h1> <a href="javascript:checkConnection()"> Check </a> </h1>
-    <div>
-      <label>Name:</label>
-      <input type="text" ng-model="yourName" placeholder="Enter a name here">
-      <hr>
-      <h1>Hello {{yourName}}!</h1>
-    </div>
-    <!-- Kendo Mobile View -->
-    <div data-role="view" data-title="View" id="index">
-      <!--Kendo Mobile Header -->
-      <header data-role="header">
-        <!--Kendo Mobile NavBar widget -->
-        <div data-role="navbar">
-          <span data-role="view-title"></span>
-        </div>
-      </header>
-      <!--Kendo Mobile ListView widget -->
-      <ul data-role="listview">
-        <li>Recipe 1</li>
-        <li>Recipe 2</li>
-      </ul>
-      <!--Kendo Mobile Footer -->
-      <footer data-role="footer">
-        <!-- Kendo Mobile TabStrip widget -->
-        <div data-role="tabstrip">
-          <a data-icon="home" href="./index.html">Home</a>
-          <a data-icon="settings" href="#settings">Settings</a>
-        </div>
-      </footer>
-    </div>
+    <script src="js/kendo/kendo.all.min.js"></script>
     <script>
-      // Initialize a new Kendo Mobile Application
-      var app = new kendo.mobile.Application();
+      var app = new kendo.mobile.Application(document.body,
+      {
+        transition:'slide'
+      });
     </script>
-  </body>
+
+</body>
 </html>
