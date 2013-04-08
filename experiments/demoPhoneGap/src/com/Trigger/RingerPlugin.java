@@ -42,7 +42,6 @@ public class RingerPlugin extends CordovaPlugin {
         {
             Log.d("RingerPlugin","Audiomanager is null");
         }
-        callbackContext.success();
-		return true;
+		return false;
     }
 }
