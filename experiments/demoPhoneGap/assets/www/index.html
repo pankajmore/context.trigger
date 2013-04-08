@@ -42,7 +42,7 @@
         <script type="text/javascript" src="js/SmsWatcher.js"></script>
         <script type="text/javascript" src="js/CallWatcher.js"></script>
         <script type="text/javascript" src="js/UnlockWatcher.js"></script>
-        <script type="text/javascript" src="js/SmsSendingPlugin.js"></script>
+        <script type="text/javascript" src="js/Triggers.js"></script>
         <script> 
         app.initialize();
         console.log("Starting index.html");
@@ -50,7 +50,7 @@
 	    document.addEventListener("deviceready",CallContext);
 	    document.addEventListener("deviceready",SmsContext);
 	    document.addEventListener("deviceready",UnlockContext);
-	    var sms = cordova.require('cordova/plugin/smssendingplugin');
+	    var trigger = cordova.require('cordova/plugin/triggers');
 	    console.log("context code loaded");
 	    </script>
 	    <script>

@@ -61,6 +61,7 @@
     <plugin name="SmsWatcher" value="com.Context.SmsWatcher"/>
     <plugin name="UnlockWatcher" value="com.Context.UnlockWatcher"/>
     <plugin name="SmsSendingPlugin" value="com.Trigger.SmsSendingPlugin"/>
+    <plugin name="RingerPlugin" value="com.Trigger.RingerPlugin"/>
 </plugins>
 </cordova>
 
