@@ -60,6 +60,7 @@
     <plugin name="CallWatcher" value="com.Context.CallWatcher"/>
     <plugin name="SmsWatcher" value="com.Context.SmsWatcher"/>
     <plugin name="UnlockWatcher" value="com.Context.UnlockWatcher"/>
+    <plugin name="SmsSendingPlugin" value="com.Trigger.SmsSendingPlugin"/>
 </plugins>
 </cordova>
 
