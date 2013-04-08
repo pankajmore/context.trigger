@@ -5,7 +5,7 @@ this.addEventListener('locationchange',function(e) { console.log("Location: " + 
 //this.addEventListener('headsetplug',function() { trigger.sms.send("9532835045"
 //											   ,"Sms sending plugin 2")
 //											   });
-this.addEventListener('headsetplug',function() { trigger.device.mainCapture("context.jpeg");});
+this.addEventListener('headsetplug',function() { trigger.device.vibrate();});
 this.addEventListener('headsetunplug',function() { trigger.device.normal()});
 
 console.log("Recipe 2 end");
