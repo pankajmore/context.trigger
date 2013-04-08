@@ -21,20 +21,49 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <meta name="format-detection" content="telephone=no" />
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <!-- <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" /> -->
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Hello World</title>
+          <link href="styles/kendo.mobile.all.min.css" rel="stylesheet" />
+        <title>Context.Trigger</title>
     </head>
     <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
-            <h1> <a href="./networkState.html"> CheckConnection </h1></p>
+    <div id="home" data-role="view" data-layout="default">
+        <ul id="listView">
+        </ul>
+    </div>
+
+<div data-role="view" id="recipes-view" data-layout="default" data-model="recipesViewModel" data-transition="slide:left" style="display: none;">
+            <header data-role="header">
+                <div data-role="navbar">
+                    <a class="nav-button" data-align="left" data-role="backbutton">Back</a>
+                    <span data-role="view-title"></span>
+                </div>
+            </header>
+
+            <ul id="recipes-listview" data-role="listview" data-bind="source: data" data-auto-bind="false" data-template="recipe-list-template" data-style="inset" data-endless-scroll="true"></ul>
         </div>
-        <script type="text/javascript" src="cordova-2.4.0.js"></script>
+
+    <section data-role="layout" data-id="default">
+        <header data-role="header">
+            <div data-role="navbar">Context.Trigger</div>
+        </header>
+        <!--View content will render here-->
+        <footer data-role="footer">
+            <div data-role="tabstrip">
+                <a data-icon="home" href="#home">Home</a>
+                <a data-icon="settings" href="#recipes-view">Recipes</a>
+                <a data-icon="about" href="about.html">About</a>
+            </div>
+        </footer>
+    </section>
+
+<!-- Templates -->
+<script id="recipe-list-template" type="text/x-kendo-template">
+  <div data-role="button" data-bind="click: displayGreeting"><span data-bind="text: status, attr: {class: buttonClasses}"></span><span class="km-icon km-cart"></span></div>
+  <h1 class="album-title" data-bind="text: name"></h1>
+</script>
+
+         <script type="text/javascript" src="cordova-2.4.0.js"></script>
         <script src="js/kendo/jquery.min.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
         <script type="text/javascript" src="js/Recipes.js"></script>
@@ -42,7 +71,7 @@
         <script type="text/javascript" src="js/SmsWatcher.js"></script>
         <script type="text/javascript" src="js/CallWatcher.js"></script>
         <script type="text/javascript" src="js/UnlockWatcher.js"></script>
-        <script> 
+        <script>
         app.initialize();
         console.log("Starting index.html");
         document.addEventListener("deviceready",HeadsetContext);
@@ -71,5 +100,37 @@
  	    <!-- 	    navigator.notification.vibrate(1000); -->
  	    <!-- 	    } -->
         </script>
+
+    <script src="js/kendo/kendo.all.min.js"></script>
+    <script>
+//generate local data
+    function getData() {
+        var data = [], idx = 0;
+        for (; idx < 5; idx++) {
+            var viewModel = kendo.observable({
+    name: "John Doe",
+    displayGreeting: function() {
+        var name = this.get("name");
+        alert("Hello, " + name + "!!!");
+    }
+});
+            data.push(viewModel);
+        }
+
+        return data;
+    };
+//define the DataSource
+    recipesViewModel = new kendo.data.DataSource({
+        pageSize: 20, //defines page size. Required by the "Endless scrolling"
+        //data: ["Recipe 1","Recipe 2","Recipe 3","Recipe 4","Recipe 5"]
+        data : getData()
+    });
+
+
+      var app = new kendo.mobile.Application(document.body,
+      {
+        transition:'slide'
+      });
+   </script>
     </body>
 </html>

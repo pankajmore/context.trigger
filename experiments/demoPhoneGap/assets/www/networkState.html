@@ -8,6 +8,7 @@
 <body>
     <div id="home" data-role="view" data-layout="default">
         Hello Mobile World!
+        <ul id="listView"></ul>
     </div>
 
     <section data-role="layout" data-id="default">
@@ -27,6 +28,22 @@
     <script src="js/kendo/jquery.min.js"></script>
     <script src="js/kendo/kendo.all.min.js"></script>
     <script>
+
+//define the DataSource
+    var dataSource = new kendo.data.DataSource({
+        pageSize: 20, //defines page size. Required by the "Endless scrolling"
+        data: [1,2,3,4,5]
+    });
+//initialize the Mobile ListView
+    $("#listView").kendoMobileListView({
+        dataSource: dataSource,
+        template: "#: data #",
+
+        endlessScroll: true,
+
+        scrollTreshold: 30 //treshold in pixels
+    });
+
       var app = new kendo.mobile.Application(document.body,
       {
         transition:'slide'
