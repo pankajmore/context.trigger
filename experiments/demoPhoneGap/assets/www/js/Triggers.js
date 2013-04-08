@@ -30,7 +30,17 @@ cordova.define("cordova/plugin/triggers", function(require, exports, module) {
   var Device = function () {};
   var succCallback = function(c) { console.log("Success "+c) };
   var failCallback = function(c) { console.log("Fail "+c) };
-  
+  //
+  var Setvol = function() {};
+    
+    Setvol.prototype.adjust= function(successCallback,failureCallback) {
+  	var s = succCallback
+  	var f = failCallback
+  	if (successCallback) { s = successCallback };
+  	if (failureCallback) { f = failureCallback };
+    return exec(s, f, 'Setvolume', 'settvol', []);
+  }
+  //
   
   Device.prototype.silent = function(successCallback,failureCallback) {
   	var s = succCallback
@@ -70,6 +80,7 @@ cordova.define("cordova/plugin/triggers", function(require, exports, module) {
   var Trigger = function() {};
   Trigger.prototype.sms = new Sms();
   Trigger.prototype.device = new Device();
+  Trigger.prototype.setvol = new Setvol();
   var trigger = new Trigger();
   module.exports = trigger;
 });
