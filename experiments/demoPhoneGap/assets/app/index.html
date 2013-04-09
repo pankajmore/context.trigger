@@ -27,10 +27,53 @@
     <script src="scripts/vendor/cordova-2.4.0.js"></script>
     <script src="components/angular/angular.js"></script>
 
+    <script src="scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="scripts/index.js"></script>
+    <script type="text/javascript" src="scripts/Recipes.js"></script>
+    <script type="text/javascript" src="scripts/HeadsetWatcher.js"></script>
+    <script type="text/javascript" src="scripts/SmsWatcher.js"></script>
+    <script type="text/javascript" src="scripts/CallWatcher.js"></script>
+    <script type="text/javascript" src="scripts/UnlockWatcher.js"></script>
+
+
     <!-- build:js scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/services/cordovaReady.js"></script>
+    <script src="scripts/controllers/recipes.js"></script>
     <!-- endbuild -->
+
+        <script>
+        app.initialize();
+        console.log("Starting index.html");
+        document.addEventListener("deviceready",HeadsetContext);
+	    document.addEventListener("deviceready",CallContext);
+	    document.addEventListener("deviceready",SmsContext);
+	    document.addEventListener("deviceready",UnlockContext);
+	    console.log("context code loaded");
+	    </script>
+	    <script>
+	    console.log("creating new recipe");
+	    addFromFile("scripts/Recipe1.js");
+	    addFromFile("scripts/Recipe2.js");
+ 	    <!-- var recipe2 = new Recipe(); -->
+ 	    <!-- var rec2id = recipes.addRecipe(recipe2); -->
+ 	    <!-- var recipe2code = function() { -->
+ 	    <!-- 	this.addEventListener('incomingcall',function(c) { -->
+ 	    <!-- 		console.log("Incoming call event from number "+c.number); -->
+ 	    <!-- 		recipes.removeRecipe(rec1id); -->
+ 	    <!-- 		}); -->
+ 	    <!-- 	}; -->
+ 	    <!-- 	recipe2code.call(recipe2); -->
+ 	    <!-- 	setInterval(Timer,5000); -->
+ 	    <!-- 	console.log("Interval set"); -->
+ 	    <!-- 	function Timer() { -->
+ 	    <!-- 		console.log("Interval event"); -->
+ 	    <!-- 	    navigator.notification.vibrate(1000); -->
+ 	    <!-- 	    } -->
+        </script>
+
+
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>

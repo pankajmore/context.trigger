@@ -7,6 +7,10 @@ angular.module('assetsApp', [])
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
+      .when('/recipes/', {
+        templateUrl: 'views/recipes.html',
+        controller: 'RecipesCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

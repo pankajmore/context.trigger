@@ -46,6 +46,7 @@ public class DemoPhoneGap extends DroidGap
         // Set by <content src="index.html" /> in config.xml
         //super.loadUrl(Config.getStartUrl());
         super.loadUrl("file:///android_asset/app/index.html");
+	    //super.setIntegerProperty("loadUrlTimeoutValue", 10000);
 //        this.registerReceiver(this.mNetworkEnabled,
 //                new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 //        this.registerReceiver(this.rHeadsetWired,
