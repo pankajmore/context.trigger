@@ -78,7 +78,7 @@ Recipe.prototype = {
 	    }
 	},
 	
-	addEventListener: function ( type, listener ) {
+	on: function ( type, listener ) {
 		var rec = this;
 		if (type == 'locationchange') {
 			console.log("Location change event listener added");
