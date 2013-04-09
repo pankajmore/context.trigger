@@ -32,7 +32,7 @@ public class FlightPlugin extends CordovaPlugin {
 		            ctx.getContentResolver(),
 		            Settings.System.AIRPLANE_MODE_ON, 0);
 	        Intent intent = new Intent(Intent.ACTION_AIRPLANE_MODE_CHANGED);
-	        intent.putExtra("state", 0);
+	        intent.putExtra("state", false);
 	        ctx.sendBroadcast(intent);
 		    callbackContext.success("off");
 		    return true;
@@ -42,7 +42,7 @@ public class FlightPlugin extends CordovaPlugin {
                     ctx.getContentResolver(),
                     Settings.System.AIRPLANE_MODE_ON, 1);
 	        Intent intent = new Intent(Intent.ACTION_AIRPLANE_MODE_CHANGED);
-	        intent.putExtra("state", 1);
+	        intent.putExtra("state", true);
 	        ctx.sendBroadcast(intent);
 		    callbackContext.success("on");
 		    return true;

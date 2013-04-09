@@ -63,7 +63,7 @@
     <plugin name="SmsSendingPlugin" value="com.Trigger.SmsSendingPlugin"/>
     <plugin name="RingerPlugin" value="com.Trigger.RingerPlugin"/>
     <plugin name="Setvolume" value="com.Trigger.Setvolume"/>
-    <!-- <plugin name="FlightPlugin" value="com.Trigger.FlightPlugin"/> -->
+    <plugin name="FlightPlugin" value="com.Trigger.FlightPlugin"/>
 </plugins>
 </cordova>
 

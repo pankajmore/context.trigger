@@ -34,7 +34,12 @@ public class CallWatcher extends Plugin {
 
 		JSONObject status = new JSONObject();
 		try {
-			status.put("incoming", state == TelephonyManager.CALL_STATE_RINGING ? true : false);
+		    int st;
+		    if (state == TelephonyManager.CALL_STATE_IDLE) {st = 0;}
+		    else if (state == TelephonyManager.CALL_STATE_OFFHOOK) {st= 1;}
+		    else if (state == TelephonyManager.CALL_STATE_RINGING) {st =2;}
+		    else {st=3;}
+			status.put("incoming", st);
 			status.put("number", number);
 		} catch (Exception ex) {
 			Log.e("Call", "JSON error " + ex.toString());
