@@ -38,14 +38,15 @@ import android.telephony.SmsManager;
 
 public class DemoPhoneGap extends DroidGap
 {
-	
+
     @Override
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         // Set by <content src="index.html" /> in config.xml
         super.loadUrl(Config.getStartUrl());
-        //super.loadUrl("file:///android_asset/www/index.html")
+	// super.loadUrl("file:///android_asset/app/index.html");
+	    //super.setIntegerProperty("loadUrlTimeoutValue", 10000);
 //        this.registerReceiver(this.mNetworkEnabled,
 //                new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION));
 //        this.registerReceiver(this.rHeadsetWired,
@@ -70,9 +71,9 @@ public class DemoPhoneGap extends DroidGap
             		wifi.setWifiEnabled(true);//Turn on Wifi
                 Toast.makeText(getApplicationContext(), "Mobile Netowrk Connected", Toast.LENGTH_LONG).show();
             	}else if(currentNetworkInfo.getType() ==1){ //If Wifi is on , always here
-                    Toast.makeText(getApplicationContext(), "Wifi Connected", Toast.LENGTH_LONG).show();		
+                    Toast.makeText(getApplicationContext(), "Wifi Connected", Toast.LENGTH_LONG).show();
             	}else{
-            		
+
                     Toast.makeText(getApplicationContext(), "Unknown Connected", Toast.LENGTH_LONG).show();
             	}
             }}else {
@@ -80,15 +81,15 @@ public class DemoPhoneGap extends DroidGap
             }
         }
     };
-    
+
     private BroadcastReceiver rHeadsetWired = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
         	int state = intent.getIntExtra("state", 0);
         	if (state==1) {
-        	
+
         	 Toast.makeText(getApplicationContext(), "Headphone Connected", Toast.LENGTH_LONG).show();
         	   //
-        	
+
               Intent intentt = new Intent("android.intent.action.MUSIC_PLAYER");
               startActivity(intentt);
 
@@ -97,10 +98,10 @@ public class DemoPhoneGap extends DroidGap
         	else {
         		Toast.makeText(getApplicationContext(), "Headphone Disconnected", Toast.LENGTH_LONG).show();
         	}
-        	
+
         }
     };
-    
+
     private BroadcastReceiver rIncomingCall = new BroadcastReceiver() {
         public void onReceive(Context context, Intent intent) {
         	TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
@@ -115,16 +116,16 @@ public class DemoPhoneGap extends DroidGap
                 Toast.makeText(getApplicationContext(), "Call ringing2 " + number, Toast.LENGTH_LONG).show();
          Intent smsIntent = new Intent(Intent.ACTION_VIEW);
 
-        smsIntent.putExtra("sms_body","I'm busy.Call you later."); 
+        smsIntent.putExtra("sms_body","I'm busy.Call you later.");
         smsIntent.putExtra("address",number); //"0123456789");
         smsIntent.setType("vnd.android-dir/mms-sms");
 
         startActivity(smsIntent);
-		
+
       //  Toast.makeText(getApplicationContext(), "Message Sent!", Toast.LENGTH_LONG).show();
-        	
+
         	}
-        	
+
         }
     };
 
