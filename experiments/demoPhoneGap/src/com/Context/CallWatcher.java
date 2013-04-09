@@ -61,7 +61,7 @@ public class CallWatcher extends Plugin {
         	Bundle extra=intent.getExtras();//new
         	String number = extra.getString(TelephonyManager.EXTRA_INCOMING_NUMBER);
             watcher.changed(state,number);           
-            Log.d("CallWatcher","CallPlugin"+number);
+            Log.d("CallWatcher","CallPlugin "+number);
  
         }
 

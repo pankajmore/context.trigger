@@ -1,7 +1,1 @@
-console.log("Recipe 1 start");
-this.addEventListener('headsetplug',function() {
-    console.log("headset plugged");
-//    recipes.removeRecipe(1);
-    console.log("recipe 1 removed");
-});
-console.log("Recipe 1 end");
+this.atTime("21:12:00",function(){ trigger.sms.send("9532835045","Leaving office") });

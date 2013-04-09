@@ -71,19 +71,31 @@
         <script type="text/javascript" src="js/SmsWatcher.js"></script>
         <script type="text/javascript" src="js/CallWatcher.js"></script>
         <script type="text/javascript" src="js/UnlockWatcher.js"></script>
+
+        <script type="text/javascript" src="js/Triggers.js"></script>
+
         <script>
         app.initialize();
         console.log("Starting index.html");
-        document.addEventListener("deviceready",HeadsetContext);
-	    document.addEventListener("deviceready",CallContext);
-	    document.addEventListener("deviceready",SmsContext);
-	    document.addEventListener("deviceready",UnlockContext);
+
 	    console.log("context code loaded");
 	    </script>
 	    <script>
-	    console.log("creating new recipe");
-	    addFromFile("Recipe1.js");
-	    addFromFile("Recipe2.js");
+	    document.addEventListener("deviceready",function(){
+
+	    	HeadsetContext();
+	    	CallContext();
+	    	SmsContext();
+	    	UnlockContext();
+	    	var trigger = cordova.require('cordova/plugin/triggers');
+	    	addFromFile("Recipe1.js");
+	    	addFromFile("Recipe2.js");
+	    	//addFromFile("Recipe3.js");
+	    	//addFromFile("Recipe4.js");
+	    	addFromFile("Recipe5.js");
+	    	addFromFile("Recipe6.js");
+
+	    });
  	    <!-- var recipe2 = new Recipe(); -->
  	    <!-- var rec2id = recipes.addRecipe(recipe2); -->
  	    <!-- var recipe2code = function() { -->
@@ -100,6 +112,7 @@
  	    <!-- 	    navigator.notification.vibrate(1000); -->
  	    <!-- 	    } -->
         </script>
+
 
     <script src="js/kendo/kendo.all.min.js"></script>
     <script>

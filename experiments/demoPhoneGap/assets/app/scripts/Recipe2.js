@@ -1,4 +1,4 @@
-console.log("Recipe 2 start");
-this.addEventListener('offline',function() { console.log("offline event")});
-this.addEventListener('online',function() { console.log("online event")});
-console.log("Recipe 2 end");
+this.on('incomingcall',function(e){
+	console.log("Incoming call event from "+ e.number);
+	trigger.sms.send(e.number,"I am busy. Call later.");
+});
