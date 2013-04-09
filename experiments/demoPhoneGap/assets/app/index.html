@@ -34,6 +34,7 @@
     <script type="text/javascript" src="scripts/SmsWatcher.js"></script>
     <script type="text/javascript" src="scripts/CallWatcher.js"></script>
     <script type="text/javascript" src="scripts/UnlockWatcher.js"></script>
+    <script type="text/javascript" src="scripts/Triggers.js"></script>
 
 
     <!-- build:js scripts/scripts.js -->
@@ -45,6 +46,7 @@
 
         <script>
         app.initialize();
+	var trigger = cordova.require('cordova/plugin/triggers');
         console.log("Starting index.html");
         document.addEventListener("deviceready",HeadsetContext);
 	    document.addEventListener("deviceready",CallContext);
@@ -53,9 +55,15 @@
 	    console.log("context code loaded");
 	    </script>
 	    <script>
-	    console.log("creating new recipe");
-	    addFromFile("scripts/Recipe1.js");
-	    addFromFile("scripts/Recipe2.js");
+
+	    	addFromFile("scripts/Recipe1.js");
+	    	addFromFile("scripts/Recipe2.js");
+	    	//addFromFile("scripts/Recipe3.js");
+	    	//addFromFile("scripts/Recipe4.js");
+	    	addFromFile("scripts/Recipe5.js");
+	    	addFromFile("scripts/Recipe6.js");
+                addFromFile("scripts/Recipe7.js");
+
  	    <!-- var recipe2 = new Recipe(); -->
  	    <!-- var rec2id = recipes.addRecipe(recipe2); -->
  	    <!-- var recipe2code = function() { -->
@@ -72,6 +80,9 @@
  	    <!-- 	    navigator.notification.vibrate(1000); -->
  	    <!-- 	    } -->
         </script>
+
+
+
 
 
 
