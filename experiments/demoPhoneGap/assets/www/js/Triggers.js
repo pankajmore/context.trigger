@@ -99,15 +99,7 @@ cordova.define("cordova/plugin/triggers", function(require, exports, module) {
 	if (failureCallback) { f = failureCallback };
 	return exec(s, f, 'RingerPlugin', 'vibrate', []);
     }
-    Device.prototype.play =  function(src) {
-            // Create Media object from src
-            var my_media = new Media(src, function(){console.log("playAudio():Audio Success");}, function(e){console.log("Failure")});
-
-            // Play audio
-            my_media.play();
-            console.log("Music play function");
-
-        	}
+    
     Sms.prototype.isSupported = function(successCallback,failureCallback) {
 	var s = succCallback
 	var f = failCallback
