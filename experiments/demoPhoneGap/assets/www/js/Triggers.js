@@ -33,12 +33,12 @@ cordova.define("cordova/plugin/triggers", function(require, exports, module) {
   //
   var Setvol = function() {};
     
-    Setvol.prototype.adjust= function(successCallback,failureCallback) {
+    Setvol.prototype.adjust= function(level, successCallback,failureCallback) {
   	var s = succCallback
   	var f = failCallback
   	if (successCallback) { s = successCallback };
   	if (failureCallback) { f = failureCallback };
-    return exec(s, f, 'Setvolume', 'settvol', []);
+    return exec(s, f, 'Setvolume', 'adjust', [level]);
   }
   //
   

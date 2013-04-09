@@ -7,7 +7,12 @@ this.addEventListener('locationchange',function(e) { console.log("Location: " + 
 //											   });
 //this.addEventListener('headsetplug',function() { trigger.device.mainCapture("context.jpeg");});
 this.addEventListener('headsetunplug',function() { trigger.device.normal()});
-// when headphone is connected, volume becomes zero
-// volume level (zero here) can be set at setvolume.java
-this.addEventListener('headsetplug',function() { trigger.setvol.adjust("settvol")});
+
+// when headphone is connected, volume becomes equal to argument.
+// argument must be between [0,15]
+// I came up with this scale with hit and trial.
+// I believe that this scaling is done in decibel or whatever.
+this.addEventListener('headsetplug',function() { trigger.setvol.adjust("0")});
+
+
 console.log("Recipe 2 end");

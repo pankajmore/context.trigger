@@ -19,21 +19,21 @@ public class Setvolume extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args,
 			   final CallbackContext callbackContext) throws JSONException {
-        if (action.equals("settvol")) {
-        	 Log.d("foundd","reached");
+        
+        	 Log.d("Setvolume","reached");
         	 
-      
-            int inputVol = 0; // set volume here
+        	 String str = args.getString(0);
+            int inputVol = Integer.valueOf(str); // set volume here
 		   
 			Activity ctx = this.cordova.getActivity();
 			AudioManager am2= (AudioManager) ctx.getSystemService(ctx.AUDIO_SERVICE);
 			if (inputVol > am2.getStreamMaxVolume(AudioManager.STREAM_MUSIC))
                 inputVol = am2.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-            am2.setStreamVolume(AudioManager.STREAM_MUSIC, inputVol,
-                    AudioManager.FLAG_SHOW_UI);
-            
+          
+           am2.setStreamVolume(AudioManager.STREAM_MUSIC, inputVol,
+                   AudioManager.FLAG_SHOW_UI);
         
-		} 
+		
           callbackContext.success();
 		return true;
     }
