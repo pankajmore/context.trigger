@@ -1,0 +1,37 @@
+[
+    {
+        "name": "Recipe1",
+        "description": "Info about the Recipe",
+        "filename": "Recipe1.js"
+    },
+    {
+        "name": "Recipe2",
+        "description": "Info about the Recipe",
+        "filename": "Recipe2.js"
+    },
+    {
+        "name": "Recipe3",
+        "description": "Info about the Recipe",
+        "filename": "Recipe3.js"
+    },
+    {
+        "name": "Recipe4",
+        "description": "Info about the Recipe",
+        "filename": "Recipe4.js"
+    },
+    {
+        "name": "Recipe5",
+        "description": "Info about the Recipe",
+        "filename": "Recipe5.js"
+    },
+    {
+        "name": "Recipe6",
+        "description": "Info about the Recipe",
+        "filename": "Recipe6.js"
+    },
+    {
+        "name": "Recipe7",
+        "description": "Info about the Recipe",
+        "filename": "Recipe7.js"
+    }
+]

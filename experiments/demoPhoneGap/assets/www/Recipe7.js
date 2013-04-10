@@ -19,6 +19,5 @@ this.on('incomingcall',function(e){
 			mediaRec.stopRecord();
 			mediaRec.release();}
 		console.log("Call cut");
-	});		
+	});
 });
-
