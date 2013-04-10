@@ -43,25 +43,27 @@
         <script type="text/javascript" src="js/SmsWatcher.js"></script>
         <script type="text/javascript" src="js/CallWatcher.js"></script>
         <script type="text/javascript" src="js/UnlockWatcher.js"></script>
+        <script type="text/javascript" src="js/ShakeWatcher.js"></script>
         <script> 
         app.initialize();
         console.log("Starting index.html");
 	    var trigger = cordova.require('cordova/plugin/triggers');
 	    console.log("context code loaded");
 	    document.addEventListener("deviceready",function(){
-	   
+	   		shake.watch();
 	    	HeadsetContext();
 	    	CallContext();
 	    	SmsContext();
 	    	UnlockContext();
 	    	
-	    	addFromFile("Recipe1.js");
+	    	//addFromFile("Recipe1.js");
 	    	//addFromFile("Recipe2.js");
 	    	//addFromFile("Recipe3.js");
 	    	//addFromFile("Recipe4.js");
 	    	//addFromFile("Recipe5.js");
 	    	//addFromFile("Recipe6.js");
-	    	addFromFile("Recipe7.js");
+	    	//addFromFile("Recipe7.js");
+	    	addFromFile("Recipe8.js");
 	    	
 	    });
  	    <!-- var recipe2 = new Recipe(); -->
