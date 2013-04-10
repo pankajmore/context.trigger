@@ -2,8 +2,8 @@ function Compass(){
 	this.watchId = null;
 	this.intervalId = null;
     this.gotMovement = function(head) {
-    console.log(head);
-	recipes.dispatchEvent({type: 'compass',heading : head});
+    console.log("HEADING: " + head.magneticHeading);
+	recipes.dispatchEvent({type: 'compass',heading : head.magneticHeading});
 	}		
     this.watch = function () { 
        if(this.intervalId){
