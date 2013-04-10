@@ -69,14 +69,21 @@ cordova.define("cordova/plugin/triggers", function(require, exports, module) {
     
     Device.prototype.flight = new Flight();
     
-    Device.prototype.adjust= function(level, successCallback,failureCallback) {
+    Device.prototype.adjust= function(level, successCallback, failureCallback) {
 	var s = succCallback
 	var f = failCallback
 	if (successCallback) { s = successCallback };
 	if (failureCallback) { f = failureCallback };
 	return exec(s, f, 'Setvolume', 'adjust', [level]);
     }
-    //
+    // 0-100
+//    Device.prototype.brightness = function(level, successCallback, failureCallback) {
+//	var s = succCallback
+//	var f = failCallback
+//	if (successCallback) { s = successCallback };
+//	if (failureCallback) { f = failureCallback };
+//	return exec(s, f, 'BrightnessPlugin', 'set', [level]);
+//    }
     
     Device.prototype.silent = function(successCallback,failureCallback) {
 	var s = succCallback

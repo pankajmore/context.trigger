@@ -22,7 +22,7 @@ function Shake(){
 	   	navigator.accelerometer.clearWatch(this.watchId);
 	    
 	    //prevent endless looping: store interval 
-	    this.intervalId=setInterval(this.watch, 1000);
+	    this.intervalId=setTimeout(this.watch, 1000);
         
         console.log("harlem");     
 	    recipes.dispatchEvent({type: 'shake'});
