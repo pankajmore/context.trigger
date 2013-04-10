@@ -8,6 +8,7 @@
 8.)     Incoming call first vibrate and then volume increases slowly
 9.)     INCOMING CALL RECORDER
 10.)    Put phone in normal mode , when a sms "play" is recieved
+11.)    Adjust Profile according to orientation and speak it
 
 
 
