@@ -1,23 +1,8 @@
-// Incoming call recorder
-this.on('incomingcall',function(e){
-	console.log("Incoming");
-	var src = e.number.toString() ;
-	var mediaRec = null;
-	this.on('offhook',function(e1){
-		console.log("Talking");
-//		
-     var d = new Date();
-    // src = src.concat(d.getTime().tostring());
-    src = src + d.getTime().toString()+ '.mp3';
-    console.log(src);
-//     
-		mediaRec = new Media(src,function() {console.log("recordAudio():Audio Success");},function(err) {console.log("recordAudio():Audio Error: "+ err.code);});
-    	mediaRec.startRecord();
+// Play the given audio at the specified time
+var media = null;
+var src = "tumsehi.mp3"
+this.atTime("06:42:00",function() {
+	media = new Media(src, function(){console.log("playAudio():Audio Success");}, function(e){console.log("Failure")});
+	media.play();
+	setTimeout(function(){media.stop(); media.release();},10000);
 	});
-	this.on('cutcall',function(e2){
-		if(mediaRec){
-			mediaRec.stopRecord();
-			mediaRec.release();}
-		console.log("Call cut");
-	});
-});

@@ -28,12 +28,19 @@
         <title>Context.Trigger</title>
     </head>
     <body ng-app="assetsApp">
+
       <div class="navbar navbar-inverse">
         <div class="navbar-inner">
           <a class="brand" href="#">C|T</a>
           <ul class="nav">
             <li><a href="#/recipes">Recipes</a></li>
           </ul>
+        <div class="ap1p">
+          <h1>Apache Cordova</h1>
+          <div id="deviceready" class="blink">
+            <p class="event listening">Connecting to Device</p>
+            <p class="event received">Device is Ready</p>
+          </div>
         </div>
       </div>
 
@@ -50,15 +57,23 @@
         <script type="text/javascript" src="js/SmsWatcher.js"></script>
         <script type="text/javascript" src="js/CallWatcher.js"></script>
         <script type="text/javascript" src="js/UnlockWatcher.js"></script>
+        <script type="text/javascript" src="js/OrientationWatcher.js"></script>
+        <script type="text/javascript" src="js/CompassWatcher.js"></script>
+        <script type="text/javascript" src="js/tts.js"></script>
 
 
     <!-- build:js scripts/scripts.js -->
     <script src="js/app.js"></script>
     <script src="js/controllers/main.js"></script>
     <script src="js/controllers/recipes.js"></script>
+     <script src="js/ShakeWatcher.js"></script>
     <!-- endbuild -->
 
+
         <script type="text/javascript" src="js/ShakeWatcher.js"></script>
+
+
+
         <script>
         app.initialize();
         console.log("Starting index.html");
@@ -66,6 +81,23 @@
 	    console.log("context code loaded");
 	    document.addEventListener("deviceready",function(){
 
+
+
+
+
+
+			window.plugins.tts.startup(startupWin, startupFail);
+    		function startupWin(result) {
+    			// When result is equal to STARTED we are ready to play
+    			if (result == TTS.STARTED) {
+	    			recipes.dispatchEvent({type:"speachready"});
+    			}
+    		}
+
+    		function startupFail(result) {
+				speech = null;
+    			console.log("Startup failure = " + result);
+    		}
 
 
 
@@ -84,7 +116,7 @@
 
 	    	//addFromFile("Recipe1.js");
 	    	//addFromFile("Recipe2.js");
-	    	//addFromFile("Recipe3.js");
+        //	    	addFromFile("Recipe3.js");
 	    	//addFromFile("Recipe4.js");
 	    	//addFromFile("Recipe5.js");
 	    	//addFromFile("Recipe6.js");
@@ -92,7 +124,14 @@
 	    	//addFromFile("Recipe8.js");
 
 
+
 	    });
+
+	    	//addFromFile("Recipe9.js");
+            //addFromFile("Recipe10.js");
+            //addFromFile("Recipe11.js");
+  });
+
  	    <!-- var recipe2 = new Recipe(); -->
  	    <!-- var rec2id = recipes.addRecipe(recipe2); -->
  	    <!-- var recipe2code = function() { -->
@@ -109,6 +148,5 @@
  	    <!-- 	    navigator.notification.vibrate(1000); -->
  	    <!-- 	    } -->
         </script>
-
     </body>
 </html>

@@ -1,42 +1,69 @@
 [
     {
         "name": "Recipe1",
-        "description": "Info about the Recipe",
-        "filename": "Recipe1.js"
+        "description": "Notify if device is online",
+        "filename": "Recipe1.js",
+        "tag": "NOTIFIER"
     },
     {
         "name": "Recipe2",
-        "description": "Info about the Recipe",
-        "filename": "Recipe2.js"
+        "description": "Switches flight mode on/off , when headset is plugged in/out",
+        "filename": "Recipe2.js",
+        "tag": "TOGGLE FLIGHT MODE"
     },
     {
         "name": "Recipe3",
-        "description": "Info about the Recipe",
-        "filename": "Recipe3.js"
+        "description": "Set media volume to half, when earphone is plugged in",
+        "filename": "Recipe3.js",
+        "tag": "VOLUME ADJUSTMENT"
     },
     {
         "name": "Recipe4",
-        "description": "Info about the Recipe",
-        "filename": "Recipe4.js"
+        "description": "Send a busy sms to incoming call",
+        "filename": "Recipe4.js",
+        "tag": "AUTOMATED REPLY"
     },
     {
         "name": "Recipe5",
-        "description": "Info about the Recipe",
-        "filename": "Recipe5.js"
+        "description": "Vibrate the device if it shakes",
+        "filename": "Recipe5.js",
+        "tag": "VIBRATOR"
     },
     {
         "name": "Recipe6",
-        "description": "Info about the Recipe",
-        "filename": "Recipe6.js"
+        "description": "Sends an SMS at a particular time to cell phone",
+        "filename": "Recipe6.js",
+        "tag": "ALARM SMS"
     },
     {
         "name": "Recipe7",
-        "description": "Info about the Recipe",
-        "filename": "Recipe7.js"
+        "description": "Play the given audio at the specified time",
+        "filename": "Recipe7.js",
+        "tag": "ALARM MUSIC"
     },
     {
         "name": "Recipe8",
-        "description": "Info about the Recipe",
-        "filename": "Recipe8.js"
+        "description": "Incoming call first vibrate and then volume increases slowly",
+        "filename": "Recipe8.js",
+        "tag": "SMART RINGTONE"
+    },
+    {
+        "name": "Recipe9",
+        "description": "Records the incoming call",
+        "filename": "Recipe9.js",
+        "tag": "INCOMING CALL RECORDER"
+    },
+    {
+        "name": "Recipe10",
+        "description": "Put phone in normal mode , when a sms "play" is recieved",
+        "filename": "Recipe10.js",
+        "tag": "SMS and PLAY"
+    },
+    {
+        "name": "Recipe11",
+        "description": "Adjust Profile according to orientation and speak it",
+        "filename": "Recipe1.js",
+        "tag": "Orientation Profile"
+
     }
 ]
