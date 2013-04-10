@@ -1,3 +1,4 @@
+// Incoming call first vibrate and then increase volume silently
 this.on('incomingcall',function(){
 	console.log("Inside incoming call");
 	trigger.device.vibrate();

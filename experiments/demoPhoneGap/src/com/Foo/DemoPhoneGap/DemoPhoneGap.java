@@ -19,7 +19,8 @@
 
 package com.Foo.DemoPhoneGap;
 import android.*;
-import android.os.Bundle;
+
+import android.os.*;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.BroadcastReceiver;
@@ -44,7 +45,15 @@ public class DemoPhoneGap extends DroidGap
     {
         super.onCreate(savedInstanceState);
         // Set by <content src="index.html" /> in config.xml
+        
         super.loadUrl(Config.getStartUrl());
+        PowerManager pm = (PowerManager)getApplicationContext().getSystemService(
+                Context.POWER_SERVICE);
+        PowerManager.WakeLock wl = pm.newWakeLock(
+            PowerManager.PARTIAL_WAKE_LOCK
+            | PowerManager.ON_AFTER_RELEASE,
+            "GLOBAL");
+        wl.acquire();
 	// super.loadUrl("file:///android_asset/app/index.html");
 	    //super.setIntegerProperty("loadUrlTimeoutValue", 10000);
 //        this.registerReceiver(this.mNetworkEnabled,
