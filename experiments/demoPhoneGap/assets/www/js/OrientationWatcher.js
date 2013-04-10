@@ -15,7 +15,7 @@ function Orientation(){
     }
     this.watch = function () { 
        if(this.intervalId){
-           clearInterval(sessionStorage.intervalId);
+           clearInterval(this.intervalId);
        }
 	console.log("Orientaion watcher run"); 
 	this.watchId = navigator.accelerometer.watchAcceleration(this.gotMovement, function(){console.log("Shake error")},{frequency:1000});
