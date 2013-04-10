@@ -64,5 +64,11 @@
         "description": "Adjust Profile according to orientation and speak it",
         "filename": "Recipe1.js",
         "tag": "Orientation Profile"
+    },
+    {
+        "name": "Recipe12",
+        "description": "Device start to say "north" when pointed to it",
+        "filename": "Recipe1.js",
+        "tag": "Mobile Compass"
     }
 ]

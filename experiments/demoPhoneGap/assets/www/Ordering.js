@@ -9,8 +9,7 @@
 9.)     INCOMING CALL RECORDER
 10.)    Put phone in normal mode , when a sms "play" is recieved
 11.)    Adjust Profile according to orientation and speak it
-
-
+12.)    Device start to say "north" when pointed to it
 
 
 
