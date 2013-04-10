@@ -1,3 +1,8 @@
-this.on('speachready',function(){
-	this.on('facedown',function() {window.plugins.tts.speak("Lets go Down");trigger.device.silent();});
-	this.on('faceup',function() {window.plugins.tts.speak("Lets go up");trigger.device.normal();});});
+// Put phone in normal mode , when a sms "play" is recieved
+this.on('incomingsms',function(e){
+    console.log("playy");
+      if(e.message=="play")
+      {
+       console.log("playy2");
+      trigger.device.normal();
+	}});
