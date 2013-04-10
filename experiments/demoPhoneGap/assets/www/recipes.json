@@ -33,5 +33,10 @@
         "name": "Recipe7",
         "description": "Info about the Recipe",
         "filename": "Recipe7.js"
+    },
+    {
+        "name": "Recipe8",
+        "description": "Info about the Recipe",
+        "filename": "Recipe8.js"
     }
 ]
