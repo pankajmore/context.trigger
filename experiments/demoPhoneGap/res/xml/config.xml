@@ -64,6 +64,7 @@
     <plugin name="RingerPlugin" value="com.Trigger.RingerPlugin"/>
     <plugin name="Setvolume" value="com.Trigger.Setvolume"/>
     <plugin name="FlightPlugin" value="com.Trigger.FlightPlugin"/>
+<!--    <plugin name="BrightnessPlugin" value="com.Trigger.BrightnessPlugin"/> -->
 </plugins>
 </cordova>
 
