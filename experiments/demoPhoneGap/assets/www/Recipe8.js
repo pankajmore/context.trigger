@@ -1,1 +1,1 @@
-this.on('shake',function(){console.log("recipshake")});
+this.on('shake',function(){navigator.notification.vibrate(500)});

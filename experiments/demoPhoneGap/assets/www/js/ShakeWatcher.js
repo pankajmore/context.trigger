@@ -14,7 +14,7 @@ function Shake(){
 	var dely = Math.abs(coords.y - this.dy);
 	var delz = Math.abs(coords.z - this.dz);
 	//console.log(delx + '_' + dely + '_' + delz);
-	var max = 4;
+	var max = 9;
 	if (delx > max || dely > max || delz > max) {
 		console.log(coords.x + "#" + coords.y + "#" + coords.z);
 	
@@ -37,7 +37,7 @@ function Shake(){
            clearInterval(sessionStorage.intervalId);
        }
 	console.log("Shaker run"); 
-	this.watchId = navigator.accelerometer.watchAcceleration(this.gotMovement, function(){console.log("Shake error")},{frequency:400});
+	this.watchId = navigator.accelerometer.watchAcceleration(this.gotMovement, function(){console.log("Shake error")},{frequency:100});
     }	
 
 }    
