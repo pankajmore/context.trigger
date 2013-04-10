@@ -44,3 +44,7 @@ function Shake(){
 
 var shake = new Shake();
     
+document.addEventListener("deviceready",function(){
+
+	   		shake.watch();
+	   		});

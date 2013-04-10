@@ -47,17 +47,16 @@
         <script type="text/javascript" src="js/CallWatcher.js"></script>
         <script type="text/javascript" src="js/UnlockWatcher.js"></script>
         <script type="text/javascript" src="js/OrientationWatcher.js"></script>
+        <script type="text/javascript" src="js/tts.js"></script>
 
 
     <!-- build:js scripts/scripts.js -->
     <script src="js/app.js"></script>
     <script src="js/controllers/main.js"></script>
     <script src="js/controllers/recipes.js"></script>
+     <script src="js/ShakeWatcher.js"></script>
     <!-- endbuild -->
-
-    
-
-        <script type="text/javascript" src="js/ShakeWatcher.js"></script>
+       
         <script>
 
         app.initialize();
@@ -65,10 +64,20 @@
 	    var trigger = cordova.require('cordova/plugin/triggers');
 	    console.log("context code loaded");
 	    document.addEventListener("deviceready",function(){
+			window.plugins.tts.startup(startupWin, startupFail);
+    		function startupWin(result) {
+    			// When result is equal to STARTED we are ready to play
+    			if (result == TTS.STARTED) {
+	    			recipes.dispatchEvent({type:"speachready"});
+    			}
+    		}	
+    
+    		function startupFail(result) {
+				speech = null;
+    			console.log("Startup failure = " + result);
+    		}
 
-
-
-	   		shake.watch();
+	   	
 
 	    	HeadsetContext();
 	    	CallContext();
@@ -89,9 +98,11 @@
 	    	//addFromFile("Recipe6.js");
 	    	//addFromFile("Recipe7.js");
 	    	//addFromFile("Recipe8.js");
-	    	addFromFile("Recipe10.js");
+	    	//addFromFile("Recipe9.js");
+            addFromFile("Recipe10.js");
+            //
+  });
 
-	    });
  	    <!-- var recipe2 = new Recipe(); -->
  	    <!-- var rec2id = recipes.addRecipe(recipe2); -->
  	    <!-- var recipe2code = function() { -->
