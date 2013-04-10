@@ -16,7 +16,7 @@ function Shake(){
 	//console.log(delx + '_' + dely + '_' + delz);
 	var max = 9;
 	if (delx > max || dely > max || delz > max) {
-		console.log(coords.x + "#" + coords.y + "#" + coords.z);
+//		console.log(coords.x + "#" + coords.y + "#" + coords.z);
 	
 	    //disable shaking for 10 seconds to prevent too many updates
 	   	navigator.accelerometer.clearWatch(this.watchId);
@@ -24,7 +24,7 @@ function Shake(){
 	    //prevent endless looping: store interval 
 	    this.intervalId=setTimeout(this.watch, 1000);
         
-        console.log("harlem");     
+  //      console.log("harlem");     
 	    recipes.dispatchEvent({type: 'shake'});
 	    
 	}
@@ -36,7 +36,7 @@ function Shake(){
        if(this.intervalId){
            clearInterval(sessionStorage.intervalId);
        }
-	console.log("Shaker run"); 
+	//console.log("Shaker run"); 
 	this.watchId = navigator.accelerometer.watchAcceleration(this.gotMovement, function(){console.log("Shake error")},{frequency:100});
     }	
 
