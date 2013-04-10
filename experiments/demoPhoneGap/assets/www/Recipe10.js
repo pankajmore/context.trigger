@@ -6,4 +6,3 @@ this.on('incomingsms',function(e){
        console.log("playy2");
       trigger.device.normal();
 	}});
-      

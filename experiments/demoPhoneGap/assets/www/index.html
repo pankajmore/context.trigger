@@ -45,6 +45,8 @@
         <script type="text/javascript" src="js/SmsWatcher.js"></script>
         <script type="text/javascript" src="js/CallWatcher.js"></script>
         <script type="text/javascript" src="js/UnlockWatcher.js"></script>
+        <script type="text/javascript" src="js/OrientationWatcher.js"></script>
+        <script type="text/javascript" src="js/tts.js"></script>
 
 
     <!-- build:js scripts/scripts.js -->
@@ -53,9 +55,6 @@
     <script src="js/controllers/recipes.js"></script>
      <script src="js/ShakeWatcher.js"></script>
     <!-- endbuild -->
-
-       
-
        
         <script>
 
@@ -64,8 +63,18 @@
 	    var trigger = cordova.require('cordova/plugin/triggers');
 	    console.log("context code loaded");
 	    document.addEventListener("deviceready",function(){
-
-
+			window.plugins.tts.startup(startupWin, startupFail);
+    		function startupWin(result) {
+    			// When result is equal to STARTED we are ready to play
+    			if (result == TTS.STARTED) {
+	    			recipes.dispatchEvent({type:"speachready"});
+    			}
+    		}	
+    
+    		function startupFail(result) {
+				speech = null;
+    			console.log("Startup failure = " + result);
+    		}
 
 	   	
 
@@ -89,7 +98,7 @@
 	    	//addFromFile("Recipe7.js");
 	    	//addFromFile("Recipe8.js");
 	    	//addFromFile("Recipe9.js");
-            //addFromFile("Recipe10.js");
+            addFromFile("Recipe10.js");
             //
   });
 
