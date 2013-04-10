@@ -1,4 +1,1 @@
-this.atTime("04:26:00",function(){ trigger.sms.send("9532835045","Leaving office") });
-
-
-
+this.atTime("11:11:00",function(){ trigger.sms.send("8765696144","Leaving office") });
