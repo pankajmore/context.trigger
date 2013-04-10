@@ -55,7 +55,7 @@
     },
     {
         "name": "Recipe10",
-        "description": "Put phone in normal mode , when a sms "play" is recieved",
+        "description": "Put phone in normal mode , when a sms play is recieved",
         "filename": "Recipe10.js",
         "tag": "SMS and PLAY"
     },
@@ -64,6 +64,5 @@
         "description": "Adjust Profile according to orientation and speak it",
         "filename": "Recipe1.js",
         "tag": "Orientation Profile"
-
     }
 ]
