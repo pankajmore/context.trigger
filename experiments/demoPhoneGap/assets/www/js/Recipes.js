@@ -5,9 +5,9 @@ function Recipes() {
     this._phonegapevents = ['deviceready','pause','resume','online','offline','backbutton','batterycritical'
     					   ,'batterylow','batterystatus','menubutton','searchbutton','startcallbutton'
     					   ,'endcallbutton','volumedownbutton','volumeupbutton'];
-    this._phonegapevents.forEach(function(e) { 
+    this._phonegapevents.forEach(function(e) {
     	document.addEventListener(e,function() {
-    		console.log("Dispatching phonegap event "+e); 
+    		console.log("Dispatching phonegap event "+e);
     		rec.dispatchEvent({type: e});
     	})
     });
@@ -26,6 +26,7 @@ Recipes.prototype.addRecipe = function(recipe) {
 Recipes.prototype.removeRecipe = function(id) {
     this._recipes[id].close();
     delete this._recipes[id];
+    console.log("Recipe with id " +id + " removed")
 };
 
 Recipes.prototype.dispatchEvent = function(event) {
@@ -54,7 +55,7 @@ Recipe.locationwatcher = {
 Recipe.prototype = {
 
 	constructor: Recipe,
-	
+
 	atTime: function (time,callback) {
 	    console.log("atTime called");
 	    var now = new Date();
@@ -77,7 +78,7 @@ Recipe.prototype = {
 		this._timeouts.push(timeout);
 	    }
 	},
-	
+
 	on: function ( type, listener ) {
 		var rec = this;
 		if (type == 'locationchange') {
@@ -85,12 +86,12 @@ Recipe.prototype = {
 			if (!Recipe.locationwatcher.watcher) {
 					function onSuccess(position){
 						var event = {type: 'locationchange'};
-						event.position = position;	
+						event.position = position;
 						rec.dispatchEvent(event);
 					}
 					function onError(error){
 						console.log("Error locationchange: " + "code: " + error.code + " message: "+ error.message);
-					} 
+					}
 					Recipe.locationwatcher.watcher = navigator.geolocation.watchPosition(onSuccess, onError, { timeout: 30000 });
 			}
 			if (!this._useslocation) {
@@ -138,7 +139,7 @@ Recipe.prototype = {
 		}
 
 	},
-	
+
 	close: function () {
 	    if (!(this._timeouts === undefined)) {
 		this._timeouts.forEach(clearTimeout);
@@ -173,9 +174,9 @@ Recipe.prototype = {
 	}
 
 };
-	
-		
-console.log("Recipe code");	
+
+
+console.log("Recipe code");
 
 var recipes = new Recipes();
 
@@ -188,7 +189,20 @@ function addFromFile(filename) {
     xmlhttp.send(null);
     var contents = xmlhttp.responseText;
     //console.log("contents = " + contents);
-    eval("var recipecode = function() { " + contents + " } "); 
+    eval("var recipecode = function() { " + contents + " } ");
     recipecode.call(recipe);
     return recid;
+}
+
+function addRecipe(code) {
+    var recipe = new Recipe();
+    var recid = recipes.addRecipe(recipe);
+    console.log("Recipe id  is "+recid);
+    eval("var recipecode = function() { " + code + " } ");
+    recipecode.call(recipe);
+    return recid;
+}
+
+function say(string) {
+    setInterval(2000, function() {console.log(string);});
 }
